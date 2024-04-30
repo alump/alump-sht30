@@ -1,0 +1,18 @@
+name: "SHT30 i2c Sensor"
+description: "Reads temperature and humidity from SHT30 i2c sensor"
+version: "0.0.1"
+slug: "sht30_sensor"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+log_level: info
+startup: services
+privileged:
+  - SYS_ADMIN
+devices:
+  - /dev/i2c-1
+device_tree: true
