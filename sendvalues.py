@@ -2,6 +2,9 @@ import smbus2
 import json
 import datetime
 import os
+import requests
+
+print('Reading values...')
 
 bus = smbus2.SMBus(1)
 bus.write_i2c_block_data(0x44, 0x2C, [0x06])
@@ -26,3 +29,5 @@ data = {'entity': 'sensor.sht30_humidity', 'attributes': { 'unit_of_measurement'
 data['state'] = humidity
 data['last_updated'] = timestamp
 response = requests.post(url, data=json.dumps(data), headers=headers)
+
+print('All done')
