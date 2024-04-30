@@ -22,7 +22,7 @@ response = requests.post(url, data=json.dumps(data), headers=headers)
 
 print('Swnding humidity: {:.2f} %'.format(humidity))
 url = 'http://supervisor/core/api/states/sensor.sht30_humidity'
-data = {'entity': 'sensor.sht30_humidity', 'attributes': { 'unit_of_measurement': '%'}
-data['state'] = cTemp
+data = {'entity': 'sensor.sht30_humidity', 'attributes': { 'unit_of_measurement': '%'}}
+data['state'] = humidity
 data['last_updated'] = timestamp
 response = requests.post(url, data=json.dumps(data), headers=headers)
