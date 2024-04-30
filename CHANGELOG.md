@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1
+ - Force send update every 5 minutes
+ - More decimals
+
 ## 0.1.0
 
  - Initial MVP version for own testing
