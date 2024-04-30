@@ -1,6 +1,6 @@
 name: "SHT30 i2c Sensor"
 description: "Reads temperature and humidity from SHT30 i2c sensor"
-version: "0.0.5"
+version: "0.0.6"
 slug: "sht30_sensor"
 init: false
 arch:
@@ -16,3 +16,4 @@ privileged:
 devices:
   - /dev/i2c-1
 device_tree: true
+homeassistant_api: true
