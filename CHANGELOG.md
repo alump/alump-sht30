@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.1
+## 0.1.2
  - Force send update every 5 minutes
  - More decimals
 

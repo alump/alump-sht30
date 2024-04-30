@@ -8,8 +8,8 @@ import time
 bus = smbus2.SMBus(1)
 lastTemp = -300.0
 lastHum = -1.0
-lastTempUpdate = datetime(2024, 1, 1, 0, 0)
-lastHumUpdate = datetime(2024, 1, 1, 0, 0)
+lastTempUpdate = datetime.datetime(2024, 1, 1, 0, 0)
+lastHumUpdate = datetime.datetime(2024, 1, 1, 0, 0)
 
 while True:
     tempSum = 0.0
