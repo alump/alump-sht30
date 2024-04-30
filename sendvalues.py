@@ -11,7 +11,7 @@ lastHum = -1.0
 
 while True:
     tempSum = 0.0
-    humSum + 0.0
+    humSum = 0.0
     
     for x in range(0, 5):
         bus.write_i2c_block_data(0x44, 0x2C, [0x06])
