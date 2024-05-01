@@ -12,6 +12,10 @@ lastHum = -1.0
 lastTempUpdate = datetime.datetime(2024, 1, 1, 0, 0)
 lastHumUpdate = datetime.datetime(2024, 1, 1, 0, 0)
 
+
+def roundPartial(val, res):
+    return round(temp * res) / res
+
 while True:
     loopStart = datetime.datetime.utcnow()
     tempSamples = []
@@ -26,7 +30,7 @@ while True:
         humSamples.append(sampleHum)
         time.sleep(1)
     
-    cTemp = round(statistics.harmonic_mean(tempSamples), 2)
+    cTemp = roundPartial(statistics.harmonic_mean(tempSamples), 50)
     humidity = round(statistics.harmonic_mean(humSamples), 1)
 
     now = datetime.datetime.utcnow()
@@ -59,7 +63,7 @@ while True:
         data['last_updated'] = timestamp
         data['attributes']['stdev'] = round(statistics.stdev(humSamples), 3)
         if lastHum >= 0 and lastHum <= 100:
-	    data['attributes']['delta'] = humidity - lastHum
+           data['attributes']['delta'] = humidity - lastHum
         response = requests.post(url, data=json.dumps(data), headers=headers)
         lastHum = humidity
         lastHumUpdate = now

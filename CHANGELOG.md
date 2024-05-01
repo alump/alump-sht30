@@ -1,6 +1,6 @@
 # Changelog
 
-# 0.1.6
+# 0.1.7
 - Stable loop sleep time
 - Fix invalid method call
 - Add friendly names
