@@ -1,6 +1,6 @@
 name: "SHT30 i2c Sensor"
 description: "Reads temperature and humidity from SHT30 i2c sensor"
-version: "0.1.5"
+version: "0.1.6"
 slug: "sht30_sensor"
 init: false
 arch:

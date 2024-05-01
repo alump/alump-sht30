@@ -1,8 +1,10 @@
 # Changelog
 
-# 0.1.5
+# 0.1.6
 - Stable loop sleep time
 - Fix invalid method call
+- Add friendly names
+- Use statistics, add stdev and delta to attributes
 
 ## 0.1.2
  - Force send update every 5 minutes
