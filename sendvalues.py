@@ -33,7 +33,7 @@ while True:
     tempTimeDelta = (now - lastTempUpdate)
     if lastTemp != cTemp or tempTimeDelta.total_seconds() > 300:
         url = 'http://supervisor/core/api/states/sensor.sht30_temperature'
-        data = {'entity': 'sensor.sht30_temperature', 'attributes': { 'unit_of_measurement': '\N{DEGREE SIGN}C'}}
+        data = {'entity': 'sensor.sht30_temperature', 'attributes': { 'friendly_name': 'SHT30 Temperature', 'unit_of_measurement': '\N{DEGREE SIGN}C'}}
         data['state'] = cTemp
         data['last_updated'] = timestamp
         response = requests.post(url, data=json.dumps(data), headers=headers)
@@ -43,12 +43,12 @@ while True:
     humTimeDelta = (now - lastHumUpdate)
     if lastHum != humidity or humTimeDelta.total_seconds() > 300:
         url = 'http://supervisor/core/api/states/sensor.sht30_humidity'
-        data = {'entity': 'sensor.sht30_humidity', 'attributes': { 'unit_of_measurement': '%'}}
+        data = {'entity': 'sensor.sht30_humidity', 'attributes': { 'friendly_name': 'SHT30 Relative Humidity', 'unit_of_measurement': '%'}}
         data['state'] = humidity
         data['last_updated'] = timestamp
         response = requests.post(url, data=json.dumps(data), headers=headers)
         lastHum = humidity
         lastHumUpdate = now
     
-    idleTime = 60 - (datetime.datetime.utcnow() - loopStart).totel_seconds()
+    idleTime = 60 - (datetime.datetime.utcnow() - loopStart).total_seconds()
     time.sleep(idleTime)
