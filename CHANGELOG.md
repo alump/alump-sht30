@@ -1,6 +1,6 @@
 # Changelog
 
-# 0.1.3
+# 0.1.4
 - Stable loop sleep time
 - Fix invalid method call
 

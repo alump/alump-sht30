@@ -50,5 +50,5 @@ while True:
         lastHum = humidity
         lastHumUpdate = now
     
-    idleTime = 60 - (datetime.datetime.utcnow() - loopStart)
+    idleTime = 60 - (datetime.datetime.utcnow() - loopStart).totel_seconds()
     time.sleep(idleTime)
