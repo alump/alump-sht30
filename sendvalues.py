@@ -12,6 +12,7 @@ lastTempUpdate = datetime.datetime(2024, 1, 1, 0, 0)
 lastHumUpdate = datetime.datetime(2024, 1, 1, 0, 0)
 
 while True:
+    loopStart = datetime.datetime.utcnow()
     tempSum = 0.0
     humSum = 0.0
     
@@ -30,7 +31,7 @@ while True:
     headers = {'Content-type': 'application/json', 'Authorization': 'Bearer ' + token }
     
     tempTimeDelta = (now - lastTempUpdate)
-    if lastTemp != cTemp or tempTimeDelta.total_minutes() > 5:
+    if lastTemp != cTemp or tempTimeDelta.total_seconds() > 300:
         url = 'http://supervisor/core/api/states/sensor.sht30_temperature'
         data = {'entity': 'sensor.sht30_temperature', 'attributes': { 'unit_of_measurement': '\N{DEGREE SIGN}C'}}
         data['state'] = cTemp
@@ -40,7 +41,7 @@ while True:
         lastTempUpdate = now
     
     humTimeDelta = (now - lastHumUpdate)
-    if lastHum != humidity or humTimeDelta.total_minutes() > 5:
+    if lastHum != humidity or humTimeDelta.total_seconds() > 300:
         url = 'http://supervisor/core/api/states/sensor.sht30_humidity'
         data = {'entity': 'sensor.sht30_humidity', 'attributes': { 'unit_of_measurement': '%'}}
         data['state'] = humidity
@@ -49,4 +50,5 @@ while True:
         lastHum = humidity
         lastHumUpdate = now
     
-    time.sleep(56)
+    idleTime = 60 - (datetime.datetime.utcnow() - loopStart)
+    time.sleep(idleTime)

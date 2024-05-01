@@ -1,5 +1,9 @@
 # Changelog
 
+# 0.1.3
+- Stable loop sleep time
+- Fix invalid method call
+
 ## 0.1.2
  - Force send update every 5 minutes
  - More decimals
