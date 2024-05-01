@@ -14,7 +14,7 @@ lastHumUpdate = datetime.datetime(2024, 1, 1, 0, 0)
 
 
 def roundPartial(val, res):
-    return round(temp * res) / res
+    return round(val * res) / res
 
 while True:
     loopStart = datetime.datetime.utcnow()
