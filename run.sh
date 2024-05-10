@@ -1,5 +1,6 @@
 #!/usr/bin/with-contenv bashio
 
-echo "SHT30 starting..."
+echo "Testing SHT30..."
 python3 test.py
+echo "Starting SHT30..."
 python3 sendvalues.py

@@ -1,5 +1,12 @@
 # Changelog
 
+# 0.2.0
+- Deprecated Python replaced
+- More statistics in attributes
+- More sampling
+- Again adjusting rounding
+
+
 # 0.1.8
 - Stable loop sleep time
 - Fix invalid method call
