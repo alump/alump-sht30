@@ -1,7 +1,8 @@
 name: "SHT30 i2c Sensor"
 description: "Reads temperature and humidity from SHT30 i2c sensor"
-version: "0.2.0"
+version: "0.2.14"
 slug: "sht30_sensor"
+url: https://github.com/alump/alump-sht30
 init: false
 arch:
   - aarch64
@@ -17,3 +18,19 @@ devices:
   - /dev/i2c-1
 device_tree: true
 homeassistant_api: true
+map:
+  - config:rw
+options:
+  temperature_entity_id: sensor.sht30_temperature
+  temperature_friendly_name: Local Temperature (SHT30)
+  humidity_entity_id: sensor.sht30_humidity
+  humidity_friendly_name: Local Relative Humidity (SHT30)
+  send_interval: 60
+  samples: 20
+schema:
+  temperature_entity_id: str
+  temperature_friendly_name: str
+  humidity_entity_id: str
+  humidity_friendly_name: str
+  send_interval: int(1,86400)
+  samples: int(1,86400)

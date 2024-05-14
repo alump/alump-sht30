@@ -6,6 +6,8 @@ ENV PATH /venv/bin:$PATH
 RUN pip3 install smbus2 requests
 COPY test.py /
 COPY sendvalues.py /
+COPY env.sh /
+RUN chmod a+x /env.sh
 COPY run.sh /
 RUN chmod a+x /run.sh
 CMD [ "/run.sh" ]

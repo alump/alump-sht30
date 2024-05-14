@@ -1,0 +1,19 @@
+configuration:
+  temperature_entity_id:
+    name: Entity ID for temperature
+    description:  Unique ID for entity, eg. "sensor.sht30_temperature"
+  temperature_friendly_name:
+    name: Name for temperature
+    description: Name shown in UI
+  humidity_entity_id:
+    name: Entity ID for relative humidity
+    description: Unique ID for entity, eg. "sensor.sht30_humidity"
+  humidity_friendly_name:
+    name: Name for relative humidity
+    description: Name shown in UI
+  send_interval:
+    name: Data sending interval (in seconds)
+    description: How often new values will be sent to HomeAssistant
+  samples:
+    name: Amount of samples taken
+    description: How many times values are measured inside one send round

@@ -1,0 +1,19 @@
+configuration:
+  temperature_entity_id:
+    name: Lämpöanturin entity ID
+    description: ID jolla entity tunnistautuu, esim. "sensor.sht30_temperature"
+  temperature_friendly_name:
+    name: Lämpöanturin nimi
+    description: Nimi käyttöliittymässä
+  humidity_entity_id:
+    name: Kosteusanturin entity ID
+    description: ID jolla entity tunnistautuu, esim. "sensor.sht30_humidity"
+  humidity_friendly_name:
+    name: Kosteusanturin nimi
+    description: Nimi käyttöliittymässä
+  send_interval:
+    name: Arvojen lähetyksen väli, sekunneissa
+    description: Kuinka usein add-on lähettää uuden arvon minimissään
+  samples:
+    name: Kuinka monta mittausta jokaiselle lähetykselle
+    description: Kuinka monta mittausta minimissään suoritetaan

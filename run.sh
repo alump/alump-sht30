@@ -1,6 +1,15 @@
 #!/usr/bin/with-contenv bashio
+set -e
 
-echo "Testing SHT30..."
+source ./env.sh
+
+bashio::log.info "Testing SHT30 reading..."
 python3 test.py
-echo "Starting SHT30..."
+bashio::log.info "Starting SHT30 updater..."
+bashio::log.info "Temperature entity ID: ${CONFIG_TEMPERATURE_ENTITY_ID}"
+bashio::log.info "Temperature friendly name: ${CONFIG_TEMPERATURE_FRIENDLY_NAME}"
+bashio::log.info "Humidity entity ID: ${CONFIG_HUMIDITY_ENTITY_ID}"
+bashio::log.info "Humidity friendly name: ${CONFIG_HUMIDITY_FRIENDLY_NAME}"
+bashio::log.info "Send interval (seconds): ${CONFIG_SEND_INTERVAL}"
+bashio::log.info "Samples: ${CONFIG_SAMPLES}"
 python3 sendvalues.py

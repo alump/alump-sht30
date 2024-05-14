@@ -3,14 +3,14 @@
 Add-on for Home Assistant OS running on Raspberry PI with SHT30 i2C sensor. You need to enable i2c access
 to use this add-on.
 
-Updates sensor.sht30_temperature and sensor.sht30_humidity entities with current values every 60 seconds.
+Updates sensor.sht30_temperature and sensor.sht30_humidity entities (unless different entity ids given)
+with current values every 60 seconds (can be changed).
 
 ## TODO features
-- Configuration. Either by UI, or at least configuration file.
 - Sampling amount and frequency and amount of decimals to config
 - Maybe support for Fahrenheit.
 - Support for second i2c port, other devices?
-- Better logging
+- Better logging (still better)
 - Code split, allow to run this on also on an another raspberry pi
 
 ## Installation
