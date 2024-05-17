@@ -7,7 +7,6 @@ Updates sensor.sht30_temperature and sensor.sht30_humidity entities (unless diff
 with current values every 60 seconds (can be changed).
 
 ## TODO features
-- Sampling amount and frequency and amount of decimals to config
 - Maybe support for Fahrenheit.
 - Support for second i2c port, other devices?
 - Better logging (still better)

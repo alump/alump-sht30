@@ -17,3 +17,9 @@ configuration:
   samples:
     name: Amount of samples taken
     description: How many times values are measured inside one send round
+  temperature_decimals:
+    name: Amount of decimals in temperature
+    description: Eg. 2 will result values like 23.45 C
+  humidity_decimals:
+    name: Amount of decimals in humidity
+    description: Eg. 1 will result values like 23.4 %

@@ -17,3 +17,9 @@ configuration:
   samples:
     name: Kuinka monta mittausta jokaiselle lähetykselle
     description: Kuinka monta mittausta minimissään suoritetaan
+  temperature_decimals:
+    name: Desimaalien lukumäärä lämpötilassa
+    description: Esim. arvo 2 tuottaa arvoja kuten 23.45 C
+  humidity_decimals:
+    name: Desimaalien lukumäärä ilmankosteudessa
+    description: Esim. arvo 1 tuottaa arvoja kuten 23.4 %

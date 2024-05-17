@@ -28,6 +28,11 @@ if os.environ.get('CONFIG_SEND_INTERVAL','') == '':
     logger.warning('CONFIG_SEND_INTERVAL not defined!')
 if os.environ.get('CONFIG_SAMPLES','') == '':
     logger.warning('CONFIG_SAMPLES not defined!')
+if os.environ.get('CONFIG_TEMPERATURE_DECIMALS','') == '':
+    logger.warning('CONFIG_TEMPERATURE_DECIMALS not defined!')
+if os.environ.get('CONFIG_HUMIDITY_DECIMALS','') == '':
+    logger.warning('CONFIG_HUMIDITY_DECIMALS not defined!')
+
 
 TEMP_ENTITY_ID = os.environ.get('CONFIG_TEMPERATURE_ENTITY_ID','sensor.sht30_temperature')
 TEMP_FNAME = os.environ.get('CONFIG_TEMPERATURE_FRIENDLY_NAME','Local Temperature (SHT30)')
@@ -37,6 +42,10 @@ HUM_FNAME = os.environ.get('CONFIG_HUMIDITY_FRIENDLY_NAME','Local Relative Humid
 logger.info('Humidity id: "%s", name: "%s"...', HUM_ENTITY_ID, HUM_FNAME)
 SEND_INTERVAL = int(os.environ.get('CONFIG_SEND_INTERVAL','60'))
 SAMPLES = int(os.environ.get('CONFIG_SAMPLES','20'))
+logger.info('%d samples with interval of %d seconds', SAMPLES, SEND_INTERVAL)
+TEMPERATURE_DECIMALS = int(os.environ.get('CONFIG_TEMPERATURE_DECIMALS','2'))
+HUMIDITY_DECIMALS = int(os.environ.get('CONFIG_HUMIDITY_DECIMALS','1'))
+logger.info('temperature decimals: %d, humidity decimals: %d', TEMPERATURE_DECIMALS, HUMIDITY_DECIMALS)
 URL = 'http://supervisor/core/api/states/'
 
 TOKEN = os.environ.get('SUPERVISOR_TOKEN','?')
@@ -69,8 +78,8 @@ while True:
         statHumSamples.append(sampleHum)
         time.sleep(1)
     
-    cTemp = round(statistics.harmonic_mean(tempSamples), 1)
-    humidity = round(statistics.harmonic_mean(humSamples), 1)
+    cTemp = round(statistics.harmonic_mean(tempSamples), TEMPERATURE_DECIMALS)
+    humidity = round(statistics.harmonic_mean(humSamples), HUMIDITY_DECIMALS)
 
     now = datetime.now(timezone.utc)
     timestamp = now.isoformat()
@@ -80,7 +89,7 @@ while True:
     if lastTemp != cTemp or tempTimeDelta.total_seconds() > 300:
         url = URL + TEMP_ENTITY_ID
         logger.info('Sending %s = %f to %s...', TEMP_ENTITY_ID, cTemp, url)
-        data = {'attributes': { 'unit_of_measurement': '\N{DEGREE SIGN}C'}}
+        data = {'attributes': { 'unit_of_measurement': '\N{DEGREE SIGN}C' }}
         data['entity'] = TEMP_ENTITY_ID
         data['state'] = cTemp
         data['last_updated'] = timestamp
@@ -108,14 +117,14 @@ while True:
     if lastHum != humidity or humTimeDelta.total_seconds() > 300:
         url = URL + HUM_ENTITY_ID
         logger.info('Sending %s = %f to %s...', HUM_ENTITY_ID, humidity, url)
-        data = {'attributes': { 'unit_of_measurement': '%'}}
+        data = {'attributes': { 'unit_of_measurement': '%' }}
         data['entity'] = HUM_ENTITY_ID
         data['state'] = humidity
         data['last_updated'] = timestamp
         data['attributes']['friendly_name'] = HUM_FNAME
         data['attributes']['stdev'] = round(statistics.stdev(statHumSamples), 3)
-        data['attributes']['min'] = round(min(statHumSamples), 3)
-        data['attributes']['max'] = round(max(statHumSamples), 3)
+        data['attributes']['min'] = round(min(statHumSamples), 2)
+        data['attributes']['max'] = round(max(statHumSamples), 2)
         data['attributes']['samples'] = len(statHumSamples)
         if lastHum >= 0 and lastHum <= 100:
            data['attributes']['delta'] = humidity - lastHum

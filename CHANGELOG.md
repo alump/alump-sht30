@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.15
+
+- make rounding (decimals) configurable
+
 ## 0.2.14
 
 - Deprecated Python replaced
