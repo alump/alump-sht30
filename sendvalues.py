@@ -19,11 +19,11 @@ logging.basicConfig(
 if os.environ.get('CONFIG_TEMPERATURE_ENTITY_ID','') == '':
     logger.warning('CONFIG_TEMPERATURE_ENTITY_ID not defined!')
 if os.environ.get('CONFIG_TEMPERATURE_FRIENDLY_NAME','') == '':
-    logger.warning('CONFIG_TEMPERATURE_FRIENDLY_NAME not defined!')
+    logger.info('CONFIG_TEMPERATURE_FRIENDLY_NAME not defined')
 if os.environ.get('CONFIG_HUMIDITY_ENTITY_ID','') == '':
     logger.warning('CONFIG_HUMIDITY_ENTITY_ID not defined!')
 if os.environ.get('CONFIG_HUMIDITY_FRIENDLY_NAME','') == '':
-    logger.warning('CONFIG_HUMIDITY_FRIENDLY_NAME not defined!')
+    logger.info('CONFIG_HUMIDITY_FRIENDLY_NAME not defined')
 if os.environ.get('CONFIG_SEND_INTERVAL','') == '':
     logger.warning('CONFIG_SEND_INTERVAL not defined!')
 if os.environ.get('CONFIG_SAMPLES','') == '':
@@ -35,13 +35,15 @@ if os.environ.get('CONFIG_HUMIDITY_DECIMALS','') == '':
 
 
 TEMP_UNIQUE_ID = '50b0c8fd-95b0-4a0c-bf16-3024741dc2db'
+logger.info('Temperature unique id: %s', TEMP_UNIQUE_ID)
 HUM_UNIQUE_ID = 'f2f70ed8-2989-404d-b770-f80472f1da60'
+logger.info('Humidity unique id: %s', HUM_UNIQUE_ID)
 
 TEMP_ENTITY_ID = os.environ.get('CONFIG_TEMPERATURE_ENTITY_ID','sensor.sht30_temperature')
-TEMP_FNAME = os.environ.get('CONFIG_TEMPERATURE_FRIENDLY_NAME','Local Temperature (SHT30)')
+TEMP_FNAME = os.environ.get('CONFIG_TEMPERATURE_FRIENDLY_NAME','')
 logger.info('Temperature id: "%s", name: "%s"...', TEMP_ENTITY_ID, TEMP_FNAME)
 HUM_ENTITY_ID = os.environ.get('CONFIG_HUMIDITY_ENTITY_ID','sensor.sht30_humidity')
-HUM_FNAME = os.environ.get('CONFIG_HUMIDITY_FRIENDLY_NAME','Local Relative Humidity (SHT30)')
+HUM_FNAME = os.environ.get('CONFIG_HUMIDITY_FRIENDLY_NAME','')
 logger.info('Humidity id: "%s", name: "%s"...', HUM_ENTITY_ID, HUM_FNAME)
 SEND_INTERVAL = int(os.environ.get('CONFIG_SEND_INTERVAL','60'))
 SAMPLES = int(os.environ.get('CONFIG_SAMPLES','20'))
@@ -97,7 +99,8 @@ while True:
         data['unique_id'] = TEMP_UNIQUE_ID
         data['state'] = cTemp
         data['last_updated'] = timestamp
-        data['attributes']['friendly_name'] = TEMP_FNAME
+        if TEMP_FNAME != '':
+            data['attributes']['friendly_name'] = TEMP_FNAME
         data['attributes']['stdev'] = round(statistics.stdev(statTempSamples), 3)
         data['attributes']['min'] = round(min(statTempSamples), 3)
         data['attributes']['max'] = round(max(statTempSamples), 3)
@@ -126,7 +129,8 @@ while True:
         data['unique_id'] = HUM_UNIQUE_ID
         data['state'] = humidity
         data['last_updated'] = timestamp
-        data['attributes']['friendly_name'] = HUM_FNAME
+        if HUM_FNAME != '':
+            data['attributes']['friendly_name'] = HUM_FNAME
         data['attributes']['stdev'] = round(statistics.stdev(statHumSamples), 3)
         data['attributes']['min'] = round(min(statHumSamples), 2)
         data['attributes']['max'] = round(max(statHumSamples), 2)

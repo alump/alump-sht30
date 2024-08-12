@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.16
+## 0.2.23
 - Adding unique id, hopefully working with manually made template
 
 ## 0.2.15
