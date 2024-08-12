@@ -1,6 +1,6 @@
 name: "SHT30 i2c Sensor"
 description: "Reads temperature and humidity from SHT30 i2c sensor"
-version: "0.2.15"
+version: "0.2.16"
 slug: "sht30_sensor"
 url: https://github.com/alump/alump-sht30
 init: false

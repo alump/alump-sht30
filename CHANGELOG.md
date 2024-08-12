@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.16
+- Adding unique id, hopefully working with manually made template
+
 ## 0.2.15
 
 - make rounding (decimals) configurable

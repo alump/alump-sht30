@@ -33,5 +33,8 @@ Once HassOS i2c configutor says that all is ready, move to next step.
 - git clone this repository to /addons
 - restart whole device
 - Under "settings -> addons -> store -> local" you should see this addon, install it
+- Go and manually create helper template sensor entities for humidity and temperature
+- Under addon's configuration make sure you use same entity ids as you just defined
 - Start the addon
-- Inspect the logs, if no issues, try to find the generated entity sht30.temperature
+- Inspect the logs, if any issues
+

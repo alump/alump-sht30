@@ -34,6 +34,9 @@ if os.environ.get('CONFIG_HUMIDITY_DECIMALS','') == '':
     logger.warning('CONFIG_HUMIDITY_DECIMALS not defined!')
 
 
+TEMP_UNIQUE_ID = '50b0c8fd-95b0-4a0c-bf16-3024741dc2db'
+HUM_UNIQUE_ID = 'f2f70ed8-2989-404d-b770-f80472f1da60'
+
 TEMP_ENTITY_ID = os.environ.get('CONFIG_TEMPERATURE_ENTITY_ID','sensor.sht30_temperature')
 TEMP_FNAME = os.environ.get('CONFIG_TEMPERATURE_FRIENDLY_NAME','Local Temperature (SHT30)')
 logger.info('Temperature id: "%s", name: "%s"...', TEMP_ENTITY_ID, TEMP_FNAME)
@@ -91,6 +94,7 @@ while True:
         logger.info('Sending %s = %f to %s...', TEMP_ENTITY_ID, cTemp, url)
         data = {'attributes': { 'unit_of_measurement': '\N{DEGREE SIGN}C' }}
         data['entity'] = TEMP_ENTITY_ID
+        data['unique_id'] = TEMP_UNIQUE_ID
         data['state'] = cTemp
         data['last_updated'] = timestamp
         data['attributes']['friendly_name'] = TEMP_FNAME
@@ -119,6 +123,7 @@ while True:
         logger.info('Sending %s = %f to %s...', HUM_ENTITY_ID, humidity, url)
         data = {'attributes': { 'unit_of_measurement': '%' }}
         data['entity'] = HUM_ENTITY_ID
+        data['unique_id'] = HUM_UNIQUE_ID
         data['state'] = humidity
         data['last_updated'] = timestamp
         data['attributes']['friendly_name'] = HUM_FNAME
