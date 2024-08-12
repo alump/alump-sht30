@@ -1,6 +1,6 @@
 name: "alump's i2c Sensors"
 description: "Reads values for entities from local i2c sensors"
-version: "0.2.24"
+version: "0.2.25"
 slug: "sht30_sensor"
 url: https://github.com/alump/alump-sht30
 init: false
